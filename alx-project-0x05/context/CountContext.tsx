@@ -23,7 +23,6 @@ export const CountProvider = ({ children }: { children: ReactNode}) => {
 }
 
 
-
 export const useCount = () => {
   const context = useContext(CountContext)
 
@@ -33,3 +32,4 @@ export const useCount = () => {
 
   return context
 }
+
