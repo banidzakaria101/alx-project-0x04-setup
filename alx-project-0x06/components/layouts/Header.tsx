@@ -1,13 +1,14 @@
 import Link from "next/link";
 import Button from "../common/Button";
-import { useRouter } from "next/router";
-import { useCount } from "@/context/CountContext";
+import { usePathname } from "next/navigation";
+import { RootState } from "@/store/store";
+import { useSelector } from "react-redux";
 
 const Header: React.FC = () => {
 
-  const router = useRouter()
-  const pathname = router.pathname;
-  const { count } = useCount()
+  const pathname = usePathname()
+  const count = useSelector((state: RootState) => state.counter.value)
+
 
   return (
     <header className="fixed w-full bg-white shadow-md">
@@ -21,19 +22,19 @@ const Header: React.FC = () => {
           {
             !["/counter-app"].includes(pathname) ? (
               <>
-                <Button
-                  buttonLabel="Sign In"
-                  buttonBackgroundColor="red"
-                />
-                <Button
-                  buttonLabel="Sign Up"
-                  buttonBackgroundColor="blue"
-                />
-              </>
+              <Button
+            buttonLabel="Sign In"
+            buttonBackgroundColor="red"
+          />
+          <Button
+            buttonLabel="Sign Up"
+            buttonBackgroundColor="blue"
+          /></>
             ) : (
-              <p className="font-semibold text-lg">Current count : {count}</p>
+              <p className=" font-semibold text-lg">Current count : {count}</p>
             )
           }
+
         </div>
       </div>
     </header>
